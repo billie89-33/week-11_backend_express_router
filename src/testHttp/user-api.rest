@@ -1,0 +1,25 @@
+### User
+GET http://localhost:4001/users
+
+
+
+### Create New User 
+POST http://localhost:4001/users
+Content-Type: application/json
+
+{
+    "username": "bank3",
+    "email": "bank3@gmail.com",
+    "password": "pass123"
+}
+
+
+### Update a User 
+PUT http://localhost:4001/users/1
+Content-Type: application/json
+
+{
+    "username": "billie",
+    "email": "bank3@gmail.com",
+    "password": "pass123"
+}
