@@ -7,10 +7,12 @@ export const router = Router();
 // คัดลอกข้อมูลออกมาเป็น Local Array เพื่อให้สามารถทำ CRUD (Push, Edit, Splice) ได้
 let users = [...fakeUsersList];
 
+
 // 1. GET: ดึงข้อมูลผู้ใช้ทั้งหมด
 router.get("/", (req, res) => {
     res.json(users);
 });
+
 
 // 2. POST: เพิ่มผู้ใช้ใหม่
 router.post("/", (req, res) => {
@@ -29,6 +31,7 @@ router.post("/", (req, res) => {
 
     return res.status(201).json(newUser);
 });
+
 
 // 3. PUT: อัปเดตข้อมูลผู้ใช้ตาม ID
 router.put("/:id", (req, res) => {
@@ -51,6 +54,7 @@ router.put("/:id", (req, res) => {
 
     res.status(200).json(user);
 });
+
 
 // 4. DELETE: ลบข้อมูลผู้ใช้ตาม ID
 router.delete("/:id", (req, res) => {
