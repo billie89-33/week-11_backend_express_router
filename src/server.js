@@ -1,11 +1,13 @@
 import express from "express"
 import users from "./fakeData/fakeUser.js"
-import { router as apiRoutes } from "./routes/v1/index.js"; 
+import { router as apiRoutes } from "./routes/index.js"; 
+import { connectDB } from "./config/mongodb.js";
+import cors from "cors";
 
 
 const app = express();
 
-//app.use(cors())
+app.use(cors())
 
 app.use(express.json());
 
@@ -43,8 +45,10 @@ app.get("/", (req,res) =>{
   </html>`); 
 });
 
+connectDB();
 
-app.use("/api/v1", apiRoutes); 
+
+app.use("/api", apiRoutes); 
 
 
 

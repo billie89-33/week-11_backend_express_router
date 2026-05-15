@@ -1,0 +1,28 @@
+GET http://localhost:4001/api/v2/users
+
+###
+
+POST http://localhost:4001/api/v2/users
+Content-Type: application/json
+
+{
+    "username": "bank123",
+    "email": "bank_new123@gmail.com",
+    "password": "mypassword123"
+}
+
+
+### ทดสอบ PUT 
+PUT http://localhost:4001/api/v2/users/6a06c9e6eab765c87828d669
+Content-Type: application/json
+
+{
+    "username": "bank",
+    "email": "bank@gmail.com",
+    "password": "mypassword"
+}
+
+
+
+### ทดสอบ DELETE 
+DELETE http://localhost:4001/api/v2/users/6a06c9e6eab765c87828d669
