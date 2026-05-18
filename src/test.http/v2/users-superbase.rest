@@ -1,0 +1,44 @@
+### ========================================================
+### Supabase / PostgreSQL - Users API (v2)
+### Base: http://localhost:4001/api/v2/users
+### ========================================================
+
+@baseUrl = http://localhost:4001/api/v2/users
+
+### 1. Read all users (Supabase)
+GET {{baseUrl}}/pg
+Accept: application/json
+
+### --------------------------------------------------------
+
+### 2. Create a new user (Supabase)
+POST {{baseUrl}}/pg
+Content-Type: application/json
+
+{
+  "username": "Charlie",
+  "email": "charlie@example.com",
+  "password": "password123",
+  "role": "admin"
+}
+
+### --------------------------------------------------------
+
+### 3. Update a user (Supabase)
+### เปลี่ยนค่า UUID ด้านล่างสุดให้ตรงกับ id ที่ได้กลับมาจากขั้นตอน POST
+PUT {{baseUrl}}/pg/5a036cd6-d37a-406a-96b9-faeaa77b0736
+Content-Type: application/json
+
+{
+  "username": "Charlie Updated",
+  "email": "charlie@example.com",
+  "password": "password123",
+  "role": "user"
+}
+
+### --------------------------------------------------------
+
+### 4. Delete a user (Supabase)
+### เปลี่ยนค่า UUID ด้านล่างสุดให้ตรงกับ id ที่ต้องการลบ
+DELETE {{baseUrl}}/pg/5a036cd6-d37a-406a-96b9-faeaa77b0736
+Accept: application/json
