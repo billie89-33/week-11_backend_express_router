@@ -11,7 +11,7 @@ import {
   createPgUser,
   updatePgUser,
   deletePgUser
-} from "../../modeles/users/users.controller.js"; 
+} from "../../modeles/users/users.v2.controller.js"; 
 
 export const router = Router();
 

@@ -6,23 +6,23 @@ POST http://localhost:4001/api/v2/users
 Content-Type: application/json
 
 {
-    "username": "bank123",
-    "email": "bank_new123@gmail.com",
-    "password": "mypassword123"
+    "username": "bank1234",
+    "email": "bank_new1234@gmail.com",
+    "password": "mypassword1234"
 }
 
 
 ### ทดสอบ PUT 
-PUT http://localhost:4001/api/v2/users/6a06c9e6eab765c87828d669
+PUT http://localhost:4001/api/v2/users/6a0be6e4821e94feb72d4b2c
 Content-Type: application/json
 
 {
-    "username": "bank",
-    "email": "bank@gmail.com",
-    "password": "mypassword"
+    "username": "bank12345",
+    "email": "bank_new12345@gmail.com",
+    "password": "mypassword12345"
 }
 
 
 
 ### ทดสอบ DELETE 
-DELETE http://localhost:4001/api/v2/users/6a06c9e6eab765c87828d669
+DELETE http://localhost:4001/api/v2/users/6a0be6e4821e94feb72d4b2c

@@ -23,7 +23,7 @@ export const getAllUsers = async (req, res) => {
     const cleanUsers = users.map(user => userResponse(user));
     return res.status(200).json({ success: true, data: cleanUsers });
   } catch (err) {
-    return res.status(500).json({ success: false, error: err.message });
+    next(error);
   }
 };
 
@@ -82,8 +82,8 @@ export const deleteUser = async (req, res) => {
       return res.status(404).json({ success: false, error: "User not found" });
     }
     return res.status(200).json({ success: true, message: "User deleted successfully" });
-  } catch (err) {
-    return res.status(400).json({ success: false, error: err.message });
+   } catch (err) {
+    next(err);
   }
 };
 
@@ -106,7 +106,7 @@ export const getAllPgUsers = async (req, res) => {
     if (error) throw error;
     return res.status(200).json({ success: true, data });
   } catch (err) {
-    return res.status(500).json({ success: false, error: err.message });
+    next(err);
   }
 };
 
@@ -142,7 +142,7 @@ export const createPgUser = async (req, res) => {
     }
     return res.status(201).json({ success: true, data });
   } catch (err) {
-    return res.status(400).json({ success: false, error: err.message });
+     next(err)
   }
 };
 
@@ -183,7 +183,7 @@ export const updatePgUser = async (req, res) => {
     }
     return res.status(200).json({ success: true, data });
   } catch (err) {
-    return res.status(400).json({ success: false, error: err.message });
+    next(err);
   }
 };
 
@@ -207,6 +207,6 @@ export const deletePgUser = async (req, res) => {
     }
     return res.status(200).json({ success: true, message: "User deleted successfully" });
   } catch (err) {
-    return res.status(400).json({ success: false, error: err.message });
+    next(err);
   }
 };
