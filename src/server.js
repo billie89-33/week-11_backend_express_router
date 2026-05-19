@@ -48,14 +48,14 @@ app.get("/", (req,res) =>{
 // เปลี่ยนจากเรียกใช้ดื้อๆ มาเป็นฟังก์ชัน startServer
 async function startServer() {
   try {
-    // 1. เชื่อมต่อฐานข้อมูลทั้งสองตัวให้เสร็จก่อน
+    
     await connectDB();
     await connectSupabase();
 
-    // 2. ผูก Routes หลังจากเชื่อมต่อ DB สำเร็จ
+   
     app.use("/api", apiRoutes); 
 
-    // 3. เริ่มรัน Server ให้ฝั่ง Client ยิงเข้ามาได้
+    
     const PORT = 4001;
     app.listen(PORT, () => {
         console.log(`Server running on Port: ${PORT}`);

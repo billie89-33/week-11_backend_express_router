@@ -1,22 +1,24 @@
 import { Router } from "express";
-// 1 mongodb
 import { 
+  // ฟังก์ชันฝั่ง MongoDB
   getAllUsers, 
   createUser, 
   updateUser, 
-  deleteUser 
-} from "../../modeles/users/users.controller.js";
-
-
-// 2. Import ฟังก์ชันฝั่ง Supabase / PostgreSQL (ไฟล์ใหม่ที่เพิ่งแยกมา)
-import {
+  deleteUser,
+  
+  // ฟังก์ชันฝั่ง Supabase (PostgreSQL)
   getAllPgUsers,
   createPgUser,
   updatePgUser,
   deletePgUser
-} from "../../modeles/users/users.pg.controller.js";
+} from "../../modeles/users/users.controller.js"; 
 
 export const router = Router();
+
+
+
+
+//  รูทเส้นทางสำหรับ MongoDB
 
 router.get("/", getAllUsers);     
 router.post("/", createUser);     
@@ -24,8 +26,7 @@ router.put("/:id", updateUser);
 router.delete("/:id", deleteUser); 
 
 
-//เวอร์ชัน (Supabase / PostgreSQL)
-
+// รูทเส้นทางสำหรับ Supabase (PostgreSQL)
 
 router.get("/pg", getAllPgUsers);     
 router.post("/pg", createPgUser);     
