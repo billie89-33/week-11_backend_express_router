@@ -1,0 +1,57 @@
+### กำหนดตัวแปร Base URL สำหรับสินค้า V2
+@baseUrl = http://localhost:4001/api/v2/products
+
+### 1. GET ALL PRODUCTS (ดึงข้อมูลสินค้าทั้งหมด)
+GET {{baseUrl}}/
+Accept: application/json
+
+###
+
+### 2. POST CREATE PRODUCT (เพิ่มสินค้าชิ้นใหม่)
+POST {{baseUrl}}/
+Content-Type: application/json
+
+{
+    "name": "เสื้อยืดคอกลมลายการ์ตูน",
+    "price": 290,
+    "description": "เสื้อผ้าฝ้าย 100% ใส่สบายระบายอากาศได้ดี",
+    "stock": 50
+}
+
+###
+
+### 3. GET PRODUCT BY ID (ดึงข้อมูลเฉพาะชิ้น - นำ ID จากผลลัพธ์ของข้อ 2 มาใส่)
+# เปลี่ยน ตรงหลังเครื่องหมาย / เป็น ID จริงที่คุณได้จากฐานข้อมูล
+GET {{baseUrl}}/65a1b2c3d4e5f6a7b8c9d0e1
+Accept: application/json
+
+###
+
+### 4. PUT UPDATE PRODUCT (อัปเดตข้อมูลทั้งหมด)
+# เปลี่ยน ตรงหลังเครื่องหมาย / เป็น ID สินค้าที่ต้องการแก้
+PUT {{baseUrl}}/65a1b2c3d4e5f6a7b8c9d0e1
+Content-Type: application/json
+
+{
+    "name": "เสื้อยืดคอกลมสีพื้น (แก้ไขรอบที่ 1)",
+    "price": 320,
+    "description": "ปรับปรุงรายละเอียดสินค้าใหม่",
+    "stock": 100
+}
+
+###
+
+### 5. PATCH UPDATE PRODUCT (อัปเดตเฉพาะราคาหรือฟิลด์บางส่วน)
+# เปลี่ยน ตรงหลังเครื่องหมาย / เป็น ID สินค้าที่ต้องการแก้
+PATCH {{baseUrl}}/65a1b2c3d4e5f6a7b8c9d0e1
+Content-Type: application/json
+
+{
+    "price": 350
+}
+
+###
+
+### 6. DELETE PRODUCT (ลบสินค้า)
+# เปลี่ยน ตรงหลังเครื่องหมาย / เป็น ID สินค้าที่ต้องการลบ
+DELETE {{baseUrl}}/65a1b2c3d4e5f6a7b8c9d0e1

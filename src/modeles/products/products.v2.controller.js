@@ -1,7 +1,7 @@
-const Product = require('../modeles/products/product.model'); // ดึง Model มาใช้
+import { Product } from './product.model.js'; 
 
-// 1. GET ALL
-exports.getAllProducts = async (req, res) => {
+// 1. GET ALL (แก้ไขชื่อกลับเป็น getAllProducts และใช้ export const)
+export const getAllProducts = async (req, res) => { 
     try {
         const products = await Product.find();
         res.status(200).json(products);
@@ -10,8 +10,8 @@ exports.getAllProducts = async (req, res) => {
     }
 };
 
-// 2. GET BY ID
-exports.getProductById = async (req, res) => {
+// 2. GET BY ID (แก้ไขเป็น export const)
+export const getProductById = async (req, res) => {
     try {
         const product = await Product.findById(req.params.id);
         if (!product) return res.status(404).json({ message: "ไม่พบสินค้าชิ้นนี้" });
@@ -21,8 +21,8 @@ exports.getProductById = async (req, res) => {
     }
 };
 
-// 3. POST (Create)
-exports.createProduct = async (req, res) => {
+// 3. POST (Create) (แก้ไขเป็น export const)
+export const createProduct = async (req, res) => {
     try {
         const newProduct = new Product(req.body);
         const savedProduct = await newProduct.save();
@@ -32,10 +32,9 @@ exports.createProduct = async (req, res) => {
     }
 };
 
-// 4. PUT (อัปเดตข้อมูลทั้งหมด)
-exports.updateProductPut = async (req, res) => {
+// 4. PUT (อัปเดตข้อมูลทั้งหมด) (แก้ไขเป็น export const)
+export const updateProductPut = async (req, res) => {
     try {
-        // ต้องระบุค่าให้ครบตามโครงสร้าง ถ้าไม่ส่งฟิลด์ไหนมา ค่าเดิมจะถูกลบหรือกลายเป็นค่าว่าง
         const updatedProduct = await Product.findByIdAndUpdate(
             req.params.id, 
             req.body, 
@@ -48,10 +47,9 @@ exports.updateProductPut = async (req, res) => {
     }
 };
 
-// 5. PATCH (อัปเดตเฉพาะบางฟิลด์)
-exports.updateProductPatch = async (req, res) => {
+// 5. PATCH (อัปเดตเฉพาะบางฟิลด์) (แก้ไขเป็น export const)
+export const updateProductPatch = async (req, res) => {
     try {
-        // ส่งมาแค่ฟิลด์ที่ต้องการแก้ เช่น { "price": 450 } ฟิลด์อื่น ๆ จะยังคงอยู่เหมือนเดิม
         const updatedProduct = await Product.findByIdAndUpdate(
             req.params.id, 
             { $set: req.body }, 
@@ -64,8 +62,8 @@ exports.updateProductPatch = async (req, res) => {
     }
 };
 
-// 6. DELETE
-exports.deleteProduct = async (req, res) => {
+// 6. DELETE (แก้ไขเป็น export const)
+export const deleteProduct = async (req, res) => {
     try {
         const deletedProduct = await Product.findByIdAndDelete(req.params.id);
         if (!deletedProduct) return res.status(404).json({ message: "ไม่พบสินค้าที่ต้องการลบ" });

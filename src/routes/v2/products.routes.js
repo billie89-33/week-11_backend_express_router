@@ -1,23 +1,20 @@
-const express = require('express');
-const router = express.Router();
-const productController = require('../../controllers/product.controller'); // ดึงฟังก์ชันมาจาก Controller
+import { Router } from "express";
+// 1. ดึงฟังก์ชันมารายตัวเหมือนฝั่ง User
+import { 
+    getAllProducts, 
+    getProductById, 
+    createProduct, 
+    updateProductPut, 
+    updateProductPatch, 
+    deleteProduct 
+} from '../../modeles/products/products.v2.controller.js'; 
 
-// 1. GET - ดึงข้อมูลสินค้าทั้งหมด
-router.get('/', productController.getAllProducts);
-
-// 2. GET - ดึงข้อมูลสินค้าเฉพาะชิ้น (ตาม ID)
-router.get('/:id', productController.getProductById);
-
-// 3. POST - เพิ่มสินค้าชิ้นใหม่
-router.post('/', productController.createProduct);
-
-
-router.put('/:id', productController.updateProductPut);
+export const router = Router();
 
 
-router.patch('/:id', productController.updateProductPatch);
-
-// 6. DELETE - ลบสินค้าออกจากระบบ
-router.delete('/:id', productController.deleteProduct);
-
-module.exports = router;
+router.get("/", getAllProducts);        // ดึงสินค้าทั้งหมด
+router.get("/:id", getProductById);    // ดึงสินค้าตาม ID
+router.post("/", createProduct);       // เพิ่มสินค้าใหม่
+router.put("/:id", updateProductPut);   // อัปเดตสินค้าทั้งหมด (PUT)
+router.patch("/:id", updateProductPatch); // อัปเดตบางฟิลด์ (PATCH)
+router.delete("/:id", deleteProduct); 
