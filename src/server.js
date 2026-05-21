@@ -4,6 +4,7 @@ import { router as apiRoutes } from "./routes/index.js";
 import { connectDB } from "./config/mongodb.js";
 import cors from "cors";
 import { connectSupabase } from './config/supabase.js';
+import cookieParser from "cookie-parser";
 
 const app = express();
 
@@ -11,7 +12,7 @@ app.use(cors())
 
 app.use(express.json());
 
-
+app.use(cookieParser());
 
 
 // เปลี่ยนจากเรียกใช้ดื้อๆ มาเป็นฟังก์ชัน startServer

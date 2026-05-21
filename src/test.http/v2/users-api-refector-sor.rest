@@ -1,39 +1,73 @@
-GET http://localhost:4001/api/v2/users
+  CONFIGURATION VARIABLES (ประกาศตัวแปรหลักของเซิร์ฟเวอร์)
+
+@baseUrl = http://localhost:4001/api/v2/users
+
+
+
+#  MONGODB TESTING ROUTES (ระบบทดสอบฝั่ง MongoDB)
+
+
+###  GET ALL USERS 
+# 
+GET {{baseUrl}}
 
 ###
 
-POST http://localhost:4001/api/v2/users
-Content-Type: application/json
-
-{
-    "username": "bank1234",
-    "email": "bank_new1s@gmail.com",
-    "password": "mypassword1234"
-}
-
-
-### ทดสอบ PUT 
-PUT http://localhost:4001/api/v2/users/6a0be6e4821e94feb72d4b2c
+### 📝 2. REGISTER USER (สมัครสมาชิก)
+# 
+POST {{baseUrl}}
 Content-Type: application/json
 
 {
     "username": "bank12345",
-    "email": "bank_new12345@gmail.com",
-    "password": "mypassword12345"
+    "email": "bank_new15s@gmail.com",
+    "password": "mypassword1234",
+    "role": "user"
 }
 
+###
 
-
-### ทดสอบ DELETE 
-DELETE http://localhost:4001/api/v2/users/6a0be6e4821e94feb72d4b2c
-
-
-
-###  LOGIN (ทดสอบเข้าสู่ระบบ V2)
-POST http://localhost:4001/api/v2/users/login
+###  UPDATE USER (แก้ไขข้อมูลผู้ใช้)
+#  ต้อง Login (Admin เท่านั้น)
+PUT {{baseUrl}}/6a0be6e4821e94feb72d4b2c
 Content-Type: application/json
 
 {
-    "email": "bank_new1s@gmail.com",
+    "username": "bank12345_edit",
+    "email": "bank_edit12345@gmail.com",
+    "password": "mypassword12345"
+}
+
+###
+
+###  DELETE USER 
+# Login (เฉพาะ Admin เท่านั้นที่มีสิทธิ์ลบ)
+DELETE {{baseUrl}}/6a0be6e4821e94feb72d4b2c
+
+###
+
+### LOGIN 
+POST {{baseUrl}}/login
+Content-Type: application/json
+
+{
+    "email": "bank_new15s@gmail.com",
     "password": "mypassword1234"
 }
+
+###
+
+###  GET ME [SUCCESS] 
+#  
+GET {{baseUrl}}/me
+
+###
+
+### GET ME (เช็กโปรไฟล์ปัจจุบัน - จำลองคุกกี้ว่างเปล่า/หมดอายุ)
+GET {{baseUrl}}/me
+Cookie: accessToken=
+
+###
+
+###  LOGOUT 
+POST {{baseUrl}}/logout

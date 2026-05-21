@@ -5,15 +5,20 @@ import {
   createUser, 
   updateUser, 
   deleteUser,
+  getMe,
   loginUser,
+  logoutUser,
   
   // ฟังก์ชันฝั่ง Supabase (PostgreSQL)
   getAllPgUsers,
   createPgUser,
   updatePgUser,
   deletePgUser,
-  loginPgUser
+  loginPgUser,
+  logoutPgUser
 } from "../../modeles/users/users.v2.controller.js"; 
+
+import { verifyToken } from "../../middlewares/auth.middleware.js";
 
 export const router = Router();
 
@@ -22,15 +27,17 @@ export const router = Router();
 
 //  ส้นทาง MongoDB
 
-router.get("/", getAllUsers);     
+router.get("/", verifyToken, getAllUsers);     
 router.post("/", createUser);     
-router.put("/:id", updateUser);   
-router.delete("/:id", deleteUser); 
+router.put("/:id",verifyToken, updateUser);   
+router.delete("/:id", verifyToken, deleteUser); 
+
+router.get("/me", verifyToken, getMe);
 
 
 //login
 router.post("/login", loginUser);
-
+router.post("/logout", verifyToken, logoutUser);
 
 
 
@@ -44,3 +51,4 @@ router.delete("/pg/:id", deletePgUser);
 
 //login
 router.post("/pg/login", loginPgUser); 
+router.post("/pg/logout", verifyToken, logoutPgUser);

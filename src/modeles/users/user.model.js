@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import bcrypt from "bcrypt";
 
 const userSchema = new mongoose.Schema(
     {
@@ -10,19 +11,20 @@ const userSchema = new mongoose.Schema(
     { timestamps: true },
 );
 
-userSchema.pre("save", async function (next) {
-  
-  if (!this.isModified("password")) return next(); 
+userSchema.pre("save", async function () {
+  // 1. หากรหัสผ่านไม่ได้ถูกแก้ไข ให้หยุดทำงานตรงนี้ (Mongoose จะไปขั้นตอนต่อไปเอง)
+  if (!this.isModified("password")) return; 
 
   try {
-    
+    // 2. เข้ารหัสผ่านด้วย bcrypt พร้อมใช้คำสั่ง await 
     this.password = await bcrypt.hash(this.password, 12); 
-    next();
+    
+    // ตรงนี้รันจบปุ๊บ ระบบจะส่งไม้ต่อเพื่อไปบันทึกลงฐานข้อมูลให้เองอัตโนมัติครับ
   } catch (err) {
-    next(err);
+    // 3. ถ้าเกิด Error ให้พ่นออกไปด้วยคำสั่ง throw
+    throw err; 
   }
 });
-
 
 
 export const User = mongoose.model("User", userSchema);

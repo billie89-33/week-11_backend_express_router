@@ -16,8 +16,8 @@ POST {{baseUrl}}/pg
 Content-Type: application/json
 
 {
-  "username": "Charlie11",
-  "email": "charlie11@example.com",
+  "username": "Charlie1122",
+  "email": "charlie112@example.com",
   "password": "password12311",
   "role": "user"
 }
@@ -52,6 +52,10 @@ POST http://localhost:4001/api/v2/users/pg/login
 Content-Type: application/json
 
 {
-    "email": "charlie11@example.com",
+    "email": "charlie112@example.com",
     "password": "password12311"
 }
+
+
+### 🔓 LOGOUT (ทดสอบออกจากระบบฝั่ง Postgres)
+POST http://localhost:4001/api/v2/users/pg/logout
