@@ -5,13 +5,13 @@
 
 @baseUrl = http://localhost:4001/api/v2/users
 
-### 1. Read all users (Supabase)
+###   all users 
 GET {{baseUrl}}/pg
 Accept: application/json
 
 ### --------------------------------------------------------
 
-### 2. Create a new user (Supabase)
+### 2. Create a new user 
 POST {{baseUrl}}/pg
 Content-Type: application/json
 
@@ -24,8 +24,7 @@ Content-Type: application/json
 
 ### --------------------------------------------------------
 
-### 3. Update a user (Supabase)
-### เปลี่ยนค่า UUID ด้านล่างสุดให้ตรงกับ id ที่ได้กลับมาจากขั้นตอน POST
+###  Update a user (Supabase)
 PUT {{baseUrl}}/pg/9850b366-9f28-4423-827a-db632d93837d
 Content-Type: application/json
 
@@ -42,3 +41,17 @@ Content-Type: application/json
 ### เปลี่ยนค่า UUID ด้านล่างสุดให้ตรงกับ id ที่ต้องการลบ
 DELETE {{baseUrl}}/pg/9850b366-9f28-4423-827a-db632d93837d
 Accept: application/json
+
+
+
+
+
+
+###  LOGIN PG 
+POST http://localhost:4001/api/v2/users/pg/login
+Content-Type: application/json
+
+{
+    "email": "charlie11@example.com",
+    "password": "password12311"
+}

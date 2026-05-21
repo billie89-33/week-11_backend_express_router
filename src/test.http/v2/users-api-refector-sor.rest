@@ -7,7 +7,7 @@ Content-Type: application/json
 
 {
     "username": "bank1234",
-    "email": "bank_new1234@gmail.com",
+    "email": "bank_new1s@gmail.com",
     "password": "mypassword1234"
 }
 
@@ -26,3 +26,14 @@ Content-Type: application/json
 
 ### ทดสอบ DELETE 
 DELETE http://localhost:4001/api/v2/users/6a0be6e4821e94feb72d4b2c
+
+
+
+###  LOGIN (ทดสอบเข้าสู่ระบบ V2)
+POST http://localhost:4001/api/v2/users/login
+Content-Type: application/json
+
+{
+    "email": "bank_new1s@gmail.com",
+    "password": "mypassword1234"
+}
